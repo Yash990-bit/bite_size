@@ -213,83 +213,101 @@ deoverwhelmBtn.addEventListener('click', async () => {
   }
 });
 
-// Client-side fallback if backend API is offline
+// Client-side dynamic deconstruction engine for arbitrary tasks
 function fallbackLocalDecompose(dump, level) {
-  const lower = dump.toLowerCase();
-  const steps = [];
+  // Strip emotional filler
+  const cleaned = dump.replace(/(?i)\b(i have to|i need to|i must|i gotta|i should|im supposed to|panicking because|so overwhelmed with|feel completely frozen and|completely disaster|oh my god|omg)\b/gi, '');
   
-  if (lower.includes('room') || lower.includes('clothes') || lower.includes('clean') || lower.includes('dishes')) {
-    steps.push({
-      id: "step-1",
-      title: "Pick up 3 pieces of clothing from the floor",
-      description: "Drop them into the hamper. Only 3 items. Don't fold anything.",
-      domain: "Physical Space",
-      estimated_seconds: 90,
-      friction_score: 1,
-      micro_reward: "🧺 +15 Clean Space Momentum",
-      completed: false
-    });
-    steps.push({
-      id: "step-2",
-      title: "Relocate 2 empty cups from desk to kitchen sink",
-      description: "Don't wash them right now. Just move them to the sink.",
-      domain: "Physical Space",
-      estimated_seconds: 60,
-      friction_score: 1,
-      micro_reward: "💧 +10 Desk Clarity",
-      completed: false
-    });
-  }
+  // Split on punctuation and natural language transitions
+  const rawClauses = cleaned.split(/[\.\n;!\?]|(?:\b(?:and then|after that|and also|plus|before|also|need to|have to|and)\b)|,/i);
+  const clauses = rawClauses.map(c => c.trim()).filter(c => c.length > 3 && !/^(it|that|then|so|but|is|are|a|an|the)$/i.test(c));
 
-  if (lower.includes('lab') || lower.includes('code') || lower.includes('report') || lower.includes('study')) {
-    steps.push({
-      id: "step-3",
-      title: "Open the project file and read the first paragraph",
-      description: "Do not write or fix anything yet. Just look at the screen for 60 seconds.",
-      domain: "Academic & Work",
-      estimated_seconds: 60,
-      friction_score: 2,
-      micro_reward: "💻 +20 Inertia Shattered",
-      completed: false
-    });
-  }
+  const items = clauses.length > 0 ? clauses : [dump.trim()];
+  const steps = [];
 
-  if (lower.includes('mom') || lower.includes('message') || lower.includes('email')) {
-    steps.push({
-      id: "step-4",
-      title: "Send a 1-sentence placeholder reply",
-      description: "Send: 'Hey! Got your message, busy right now but will call you by 7 PM!'",
-      domain: "Administrative & Social",
-      estimated_seconds: 45,
-      friction_score: 2,
-      micro_reward: "📱 +15 Social Relief",
-      completed: false
-    });
-  }
+  items.forEach((clause, idx) => {
+    const cl = clause.toLowerCase();
+    let domain = "Life Management";
+    let title = `Spend 60 seconds inspecting: ${clause}`;
+    let desc = "Take one physical or digital action that takes under 120 seconds.";
+    let reward = "⚡ +15 Action Initiated";
+    let secs = 60;
 
-  if (steps.length === 0) {
+    if (/water|drink|eat|lunch|dinner|breakfast|food|snack|hungry|pill|meds/i.test(cl)) {
+      domain = "Self-Care";
+      title = "Drink 1 glass of cold water and grab a quick bite";
+      desc = "Blood sugar crashes trigger executive paralysis. Hydrate first.";
+      reward = "🌱 +20 Energy Restored";
+      secs = 60;
+    } else if (/dish|dishes|sink/i.test(cl)) {
+      domain = "Physical Space";
+      title = "Squirt soap on 1 sponge and wash only 1 single fork or cup";
+      desc = "Rinse 1 item and place on drying rack. Do not look at the rest.";
+      reward = "✨ +15 Dish Inertia Shattered";
+      secs = 60;
+    } else if (/cloth|laundry|floor|room|mess/i.test(cl)) {
+      domain = "Physical Space";
+      title = "Pick up exactly 3 pieces of clothing from the floor";
+      desc = "Toss them into the hamper. Only 3 items. Zero folding allowed.";
+      reward = "🧺 +15 Floor Cleared";
+      secs = 60;
+    } else if (/code|bug|lab|report|study|exam|project|pr|git|write|slides/i.test(cl)) {
+      domain = "Academic & Work";
+      title = `Open your workspace or editor for: ${clause}`;
+      desc = "Do not write or fix anything yet. Just open the window and look at it.";
+      reward = "💻 +20 Inertia Shattered";
+      secs = 60;
+    } else if (/tax|taxes|bill|bank|pay|rent|landlord|renew|passport/i.test(cl)) {
+      domain = "Administrative";
+      title = `Create a desktop folder or bookmark link for: ${clause}`;
+      desc = "Do not fill forms yet. Just create the destination folder or open the tab.";
+      reward = "📁 +25 Bureaucracy Broken";
+      secs = 45;
+    } else if (/pack|suitcase|luggage|trip|bag/i.test(cl)) {
+      domain = "Logistics";
+      title = `Open your suitcase on the bed and lay out 2 pairs of socks`;
+      desc = "Stop right there. You have successfully begun packing.";
+      reward = "🧳 +20 Packing Begun";
+      secs = 60;
+    } else if (/dog|cat|vet|pet/i.test(cl)) {
+      domain = "Pet Care";
+      title = `Find the pet leash or carrier for: ${clause}`;
+      desc = "Place it by the front door.";
+      reward = "🐾 +15 Pet Care Step";
+      secs = 45;
+    } else if (/email|message|reply|text|call|mom|dad|friend/i.test(cl)) {
+      domain = "Communication";
+      title = `Send a 1-sentence placeholder reply for: ${clause}`;
+      desc = "A 5-word acknowledgement is 100x better than ghosting.";
+      reward = "📱 +15 Social Relief";
+      secs = 45;
+    }
+
     steps.push({
-      id: "step-1",
-      title: "Stand up and take 3 deep belly breaths",
-      description: "Snap the nervous system out of fight-or-flight freeze.",
-      domain: "Self-Care",
-      estimated_seconds: 45,
+      id: `step-${idx + 1}`,
+      title: title,
+      description: desc,
+      domain: domain,
+      estimated_seconds: secs,
       friction_score: 1,
-      micro_reward: "🫁 +10 Nervous Reset",
+      micro_reward: reward,
       completed: false
     });
-  }
+  });
+
+  // Prioritize Self-Care first
+  steps.sort((a, b) => (a.domain === "Self-Care" ? -1 : 1));
 
   return {
-    session_id: "local_session",
+    session_id: "local_" + Math.random().toString(36).substring(7),
     original_dump: dump,
     friction_analysis: {
-      perceived_mountain: "Perceived mountain of mixed physical and mental chores.",
-      core_blocker: "High task ambiguity and ADHD executive freeze.",
+      perceived_mountain: `Overwhelming multi-task backlog with ${steps.length} fragmented items.`,
+      core_blocker: "High task ambiguity and ADHD executive initiation freeze.",
       paralysis_level: level
     },
     atomic_steps: steps,
-    body_doubling_message: "Hey Aarav. Take a breath. You don't have to conquer your whole life today. Just give me 2 minutes on this single first step.",
+    body_doubling_message: "Hey Aarav. Take a breath. You don't have to conquer everything right now. Just give me 60 seconds on this single first step. I'm right here with you.",
     total_steps: steps.length
   };
 }

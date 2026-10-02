@@ -48,6 +48,23 @@ class TestBiteSizeAgent(unittest.TestCase):
         self.assertIn("# 🎯 BiteSize Action Plan", md)
         self.assertIn("Atomic 2-Minute Steps", md)
 
+    def test_arbitrary_unseen_tasks(self):
+        dump = "file tax returns, take dog to the vet, fix the leaking faucet, and pack suitcase for trip"
+        plan = self.agent.deoverwhelm(dump)
+        self.assertEqual(len(plan.atomic_steps), 4)
+        domains = [s.domain for s in plan.atomic_steps]
+        self.assertIn("Administrative", domains)
+        self.assertIn("Logistics & Errands", domains)
+        self.assertIn("Physical Space", domains)
+
+    def test_persistence_and_user_stats(self):
+        dump = "drink water, clean desk"
+        self.agent.deoverwhelm(dump)
+        self.agent.complete_current_step()
+        stats = self.agent.storage.get_user_stats("Aarav")
+        self.assertGreater(stats["all_time_dopamine"], 0)
+        self.assertGreater(stats["total_conquered_tasks"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

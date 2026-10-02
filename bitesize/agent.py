@@ -11,6 +11,7 @@ from bitesize.tools import (
     DopamineTrackerTool,
     PlanExporterTool
 )
+from bitesize.storage import LocalStorage
 
 
 class BiteSizeAgent:
@@ -23,6 +24,7 @@ class BiteSizeAgent:
     def __init__(self, model_name: str = "llama3.2:latest", user_name: str = "Aarav"):
         self.user_name = user_name
         self.llm_client = OpenSourceLLMClient(model_name=model_name)
+        self.storage = LocalStorage()
         
         # Tools
         self.decomposer_tool = TaskDecomposerTool()
@@ -51,6 +53,8 @@ class BiteSizeAgent:
             "core_blocker": plan.friction_analysis.core_blocker,
             "first_step": plan.first_step_recommendation
         })
+        # Persist session to local SQLite
+        self.storage.save_session(plan.session_id, self.user_name, brain_dump, plan.model_dump())
         return plan
 
     def get_current_focus_step(self) -> Optional[AtomicStep]:
@@ -71,6 +75,15 @@ class BiteSizeAgent:
         step.completed = True
         reward = self.dopamine_tool.register_completion(self.user_state, step)
         self.user_state.current_step_index += 1
+        
+        # Persist step completion
+        if self.current_plan:
+            self.storage.record_step_completion(
+                self.current_plan.session_id,
+                self.user_name,
+                step.model_dump(),
+                reward["points_earned"]
+            )
         
         next_step = self.get_current_focus_step()
         encouragement = self.body_doubler_tool.get_message(self.user_state.current_step_index)

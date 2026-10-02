@@ -115,7 +115,7 @@ def run_interactive_tui(agent: BiteSizeAgent, sample_mode: bool = False):
             step_text,
             title="[bold green]Current Atomic Step (Zero Distractions)[/bold green]",
             border_style="green",
-            subtitle="[white][Enter] Complete & Earn Dopamine  |  [s] Skip  |  [m] View All  |  [q] Quit[/white]"
+            subtitle="[white][Enter] Complete & Dopamine  |  [t] Run 2-Min Timer  |  [s] Skip  |  [m] View All  |  [q] Quit[/white]"
         )
         console.print(step_panel)
 
@@ -124,6 +124,23 @@ def run_interactive_tui(agent: BiteSizeAgent, sample_mode: bool = False):
         if choice == "q":
             console.print("[yellow]Session paused. No guilt. Come back anytime.[/yellow]")
             break
+        elif choice == "t":
+            # Live Terminal Countdown Timer
+            duration = step.estimated_seconds
+            console.print(f"\n[cyan]⏱️ 2-Minute Timer started ({duration}s). Focus solely on this micro-step...[/cyan]")
+            with Progress(transient=True) as timer_prog:
+                task_id = timer_prog.add_task("[green]Focusing...", total=duration)
+                for _ in range(duration):
+                    time.sleep(1)
+                    timer_prog.update(task_id, advance=1)
+            sys.stdout.write('\a')
+            sys.stdout.flush()
+            console.print("[bold yellow]🔔 Time's up! Did you finish or make progress?[/bold yellow]")
+            input("Press [Enter] to complete and collect dopamine...")
+            res = agent.complete_current_step()
+            console.print(f"\n[bold green]✨ DING! Micro-Step Conquered![/bold green] {res['reward']['reward_banner']}")
+            sys.stdout.write('\a')
+            sys.stdout.flush()
         elif choice == "s":
             res = agent.skip_current_step()
             console.print(f"[dim]{res['message']}[/dim]\n")
@@ -134,9 +151,17 @@ def run_interactive_tui(agent: BiteSizeAgent, sample_mode: bool = False):
         else:
             # Complete step
             res = agent.complete_current_step()
+            sys.stdout.write('\a')
+            sys.stdout.flush()
             console.print(f"\n[bold green]✨ DING! Micro-Step Conquered![/bold green] {res['reward']['reward_banner']}")
             if res['reward']['milestone']:
                 console.print(f"[bold yellow]{res['reward']['milestone']}[/bold yellow]")
             console.print(f"[cyan]Streak: {agent.user_state.streak} 🔥 | Total Dopamine: {agent.user_state.dopamine_score} pts[/cyan]")
+            
+            # Show historical stats from SQLite
+            stats = agent.storage.get_user_stats(agent.user_name)
+            console.print(f"[dim]All-time Conquered: {stats['total_conquered_tasks']} tasks | Lifetime Dopamine: {stats['all_time_dopamine']} pts[/dim]")
+            console.print(f"[italic dim]\"{res['encouragement']}\"[/italic dim]\n")
+            time.sleep(0.5)
             console.print(f"[italic dim]\"{res['encouragement']}\"[/italic dim]\n")
             time.sleep(0.5)
