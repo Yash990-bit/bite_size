@@ -53,6 +53,7 @@ The BiteSize agent ingests this panic dump and executes an autonomous de-escalat
 
 ## Code
 
+
 The complete source code is open source and hosted on GitHub:
 
 {% github https://github.com/yashraghubanshi/bitesize-agent %}
@@ -134,9 +135,9 @@ Within 40 minutes, he had cleared his room, drunk water, eaten lunch, and writte
 
 This project was built and recorded using **DevRelay** and the Antigravity agentic harness. You can inspect the full tool calls, prompt logs, and decision trees preserved in our normalized session:
 
-{% agent_session bitesize-adhd-deoverwhelm %}
+{% agent_session 364 %}
 
-*(Transcript also exportable locally via `python3 devrelay_export.py`)*
+*(Direct Session Link: [dev.to/agent_sessions/bitesize-de-escalating-adhd-task-paralysis-with-open-source-ai-zqzifx](https://dev.to/agent_sessions/bitesize-de-escalating-adhd-task-paralysis-with-open-source-ai-zqzifx))*
 
 ---
 
