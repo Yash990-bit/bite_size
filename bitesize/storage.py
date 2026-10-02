@@ -106,7 +106,7 @@ class LocalStorage:
             """, (user_name, dopamine_points, dopamine_points))
             conn.commit()
 
-    def get_user_stats(self, user_name: str = "Aarav") -> Dict[str, Any]:
+    def get_user_stats(self, user_name: str = "Mayank") -> Dict[str, Any]:
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT all_time_dopamine, highest_streak, total_conquered_tasks FROM user_profile WHERE user_name = ?", (user_name,))

@@ -18,7 +18,7 @@ console = Console()
 def display_welcome_banner():
     banner = Text()
     banner.append("🌱 BiteSize — Open-Source ADHD Task De-Overwhelmer\n", style="bold green")
-    banner.append("Built with love for Aarav 💚 | 100% Local Open AI Core\n", style="dim")
+    banner.append("Built with love for Mayank 💚 | 100% Local Open AI Core\n", style="dim")
     banner.append("Defeat executive dysfunction freeze with 2-minute atomic micro-steps.", style="italic cyan")
     
     panel = Panel(
@@ -48,7 +48,7 @@ def run_interactive_tui(agent: BiteSizeAgent, sample_mode: bool = False):
             "I have to finish my machine learning lab report due tonight but my code is broken, "
             "and I haven't eaten lunch and need to reply to mom's message and wash dishes before roommate comes home."
         )
-        console.print(f"[dim italic]Loaded Aarav's real Sunday panic backlog:[/dim italic]\n[cyan]{brain_dump}[/cyan]\n")
+        console.print(f"[dim italic]Loaded Mayank's real Sunday panic backlog:[/dim italic]\n[cyan]{brain_dump}[/cyan]\n")
     else:
         lines = []
         while True:

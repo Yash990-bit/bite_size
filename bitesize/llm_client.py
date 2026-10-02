@@ -174,7 +174,7 @@ class OpenSourceLLMClient:
             friction_analysis=friction_analysis,
             first_step_recommendation=first_rec,
             atomic_steps=steps,
-            body_doubling_message="Hey Aarav. Take a breath. You don't have to conquer everything right now. Just give me 90 seconds on this single first step. I'm right here with you.",
+            body_doubling_message="Hey Mayank. Take a breath. You don't have to conquer everything right now. Just give me 90 seconds on this single first step. I'm right here with you.",
             total_steps=len(steps),
             total_estimated_minutes=round(total_time_mins, 1)
         )

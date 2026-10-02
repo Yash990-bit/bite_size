@@ -32,7 +32,7 @@ class DeoverwhelmRequest(BaseModel):
     brain_dump: str
     paralysis_level: Optional[str] = "extreme"
     model_name: Optional[str] = "llama3.2:latest"
-    user_name: Optional[str] = "Aarav"
+    user_name: Optional[str] = "Mayank"
 
 
 class StepActionRequest(BaseModel):

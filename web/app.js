@@ -191,7 +191,7 @@ deoverwhelmBtn.addEventListener('click', async () => {
         brain_dump: dump,
         paralysis_level: selectedLevel,
         model_name: 'llama3.2:latest',
-        user_name: 'Aarav'
+        user_name: 'Mayank'
       })
     });
 
@@ -307,7 +307,7 @@ function fallbackLocalDecompose(dump, level) {
       paralysis_level: level
     },
     atomic_steps: steps,
-    body_doubling_message: "Hey Aarav. Take a breath. You don't have to conquer everything right now. Just give me 60 seconds on this single first step. I'm right here with you.",
+    body_doubling_message: "Hey Mayank. Take a breath. You don't have to conquer everything right now. Just give me 60 seconds on this single first step. I'm right here with you.",
     total_steps: steps.length
   };
 }

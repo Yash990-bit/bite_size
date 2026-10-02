@@ -10,7 +10,7 @@ from bitesize.tools import TaskDecomposerTool, DopamineTrackerTool, PlanExporter
 class TestBiteSizeAgent(unittest.TestCase):
 
     def setUp(self):
-        self.agent = BiteSizeAgent(user_name="Aarav")
+        self.agent = BiteSizeAgent(user_name="Mayank")
 
     def test_deoverwhelm_generates_atomic_steps(self):
         dump = "my room is a disaster clothes on floor need to study for exam code is broken"
@@ -61,7 +61,7 @@ class TestBiteSizeAgent(unittest.TestCase):
         dump = "drink water, clean desk"
         self.agent.deoverwhelm(dump)
         self.agent.complete_current_step()
-        stats = self.agent.storage.get_user_stats("Aarav")
+        stats = self.agent.storage.get_user_stats("Mayank")
         self.assertGreater(stats["all_time_dopamine"], 0)
         self.assertGreater(stats["total_conquered_tasks"], 0)
 

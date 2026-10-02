@@ -35,7 +35,7 @@ class DecomposedPlan(BaseModel):
 
 
 class UserState(BaseModel):
-    user_name: str = "Aarav"
+    user_name: str = "Mayank"
     streak: int = 0
     dopamine_score: int = 0
     completed_step_ids: List[str] = Field(default_factory=list)

@@ -13,8 +13,8 @@ def main():
         description="BiteSize: The Open-Source ADHD Task De-Overwhelmer Agent"
     )
     parser.add_argument("--model", type=str, default="llama3.2:latest", help="Ollama open-weight model name")
-    parser.add_argument("--user", type=str, default="Aarav", help="User name (default: Aarav)")
-    parser.add_argument("--sample", action="store_true", help="Auto-load Aarav's messy Sunday backlog")
+    parser.add_argument("--user", type=str, default="Mayank", help="User name (default: Mayank)")
+    parser.add_argument("--sample", action="store_true", help="Auto-load Mayank's messy Sunday backlog")
     parser.add_argument("--web", action="store_true", help="Launch FastAPI web dashboard and API server")
     parser.add_argument("--port", type=int, default=8000, help="Port for web server (default 8000)")
     parser.add_argument("--export-devrelay", action="store_true", help="Export recent agent session for DevRelay")

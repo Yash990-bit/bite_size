@@ -1,19 +1,19 @@
 # 🌱 BiteSize — Open-Source ADHD Task De-Overwhelmer Agent
 
 > **Built for Hacktoberfest Weekend Challenge: *Build for a Friend***  
-> Dedicated with love to **Aarav** 💚
+> Dedicated with love to **Mayank** 💚
 
 BiteSize is an autonomous, open-source AI agent built to conquer **ADHD paralysis and executive dysfunction**. When an overwhelmed brain perceives a mountain of tasks, BiteSize ingests unstructured, emotional panic dumps, analyzes cognitive friction, and shreds the mountain into microscopic, unambiguous **2-minute atomic micro-steps**—presenting them one by one in an anti-paralysis focus mode with zero guilt.
 
 ---
 
-## 💡 The Story: Why I Built This for Aarav
+## 💡 The Story: Why I Built This for Mayank
 
-Aarav is my closest friend and roommate. He is a brilliant computer science student who can write high-performance distributed systems in a flow state. But when faced with messy Sunday backlogs—chores, unread messages, broken lab assignments, and chores—his brain hits **executive dysfunction freeze**.
+Mayank is my closest friend and roommate. He is a brilliant computer science student who can write high-performance distributed systems in a flow state. But when faced with messy Sunday backlogs—chores, unread messages, broken lab assignments, and chores—his brain hits **executive dysfunction freeze**.
 
 To an ADHD brain, a to-do list doesn't look like steps; it feels like an insurmountable 400-pound boulder. Commercial apps (Todoist, Notion) made it worse by splashing red overdue badges and guilt.
 
-> *"I don't need another list telling me how far behind I am. I just need someone to tell me where to put my first foot."* — Aarav
+> *"I don't need another list telling me how far behind I am. I just need someone to tell me where to put my first foot."* — Mayank
 
 BiteSize was built to be that compassionate partner. It never lectures, never shames, and hides everything except the single 2-minute step in front of you.
 
@@ -80,7 +80,7 @@ python3 -m pip install rich pydantic fastapi uvicorn requests httpx
 # Run with interactive prompt
 python3 cli.py
 
-# Or test with Aarav's real Sunday panic backlog
+# Or test with Mayank's real Sunday panic backlog
 python3 cli.py --sample
 ```
 
@@ -116,10 +116,10 @@ devrelay sessions submit --title "BiteSize: De-escalating ADHD Task Paralysis" -
 
 ---
 
-## 🤝 Handover & Aarav's Reaction
+## 🤝 Handover & Mayank's Reaction
 
 > *"Bro, usually looking at my to-do list makes me want to close my laptop and sleep. Seeing just 'Put 3 shirts in the basket' with a 2-minute countdown actually made me get off the bed. This is the first time an app didn't make me feel guilty."*  
-> — **Aarav** (Roommate & Best Friend)
+> — **Mayank** (Roommate & Best Friend)
 
 ---
 

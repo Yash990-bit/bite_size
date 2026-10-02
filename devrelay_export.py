@@ -34,7 +34,7 @@ def generate_session_data():
                     "content": [
                         {
                             "type": "text",
-                            "text": "Analyzing cognitive friction and task ambiguity for Aarav. Breaking down executive paralysis..."
+                            "text": "Analyzing cognitive friction and task ambiguity for Mayank. Breaking down executive paralysis..."
                         },
                         {
                             "type": "tool_call",
@@ -52,7 +52,7 @@ def generate_session_data():
                             "type": "tool_call",
                             "name": "body_doubling_companion",
                             "input": "Step 1 of 5 initiation",
-                            "output": "'Hey Aarav, take a breath. You don't have to fix your whole life today. Just give me 60 seconds on this single glass of water. I am keeping time for you.'"
+                            "output": "'Hey Mayank, take a breath. You don't have to fix your whole life today. Just give me 60 seconds on this single glass of water. I am keeping time for you.'"
                         },
                         {
                             "type": "text",
@@ -92,7 +92,7 @@ def generate_session_data():
                 "total_messages": 4,
                 "project": "BiteSize",
                 "challenge": "Hacktoberfest Weekend Challenge: Build for a Friend",
-                "friend": "Aarav"
+                "friend": "Mayank"
             }
         }
     }

@@ -21,7 +21,7 @@ class BiteSizeAgent:
     and guides the user through atomic 2-minute steps one-at-a-time.
     """
 
-    def __init__(self, model_name: str = "llama3.2:latest", user_name: str = "Aarav"):
+    def __init__(self, model_name: str = "llama3.2:latest", user_name: str = "Mayank"):
         self.user_name = user_name
         self.llm_client = OpenSourceLLMClient(model_name=model_name)
         self.storage = LocalStorage()
