@@ -70,8 +70,8 @@ Python 3.10+ installed.
 
 ### 2. Clone and Setup
 ```bash
-git clone https://github.com/your-username/bitesize-agent.git
-cd bitesize-agent
+git clone https://github.com/Yash990-bit/bite_size.git
+cd bite_size
 python3 -m pip install rich pydantic fastapi uvicorn requests httpx
 ```
 

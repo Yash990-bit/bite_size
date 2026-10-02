@@ -56,7 +56,7 @@ The BiteSize agent ingests this panic dump and executes an autonomous de-escalat
 
 The complete source code is open source and hosted on GitHub:
 
-{% github https://github.com/yashraghubanshi/bitesize-agent %}
+{% github https://github.com/Yash990-bit/bite_size %}
 
 ### Core Repository Structure:
 - `bitesize/agent.py`: Autonomous agent harness orchestrating perception, reasoning, and tool calls.
