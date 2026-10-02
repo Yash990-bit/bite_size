@@ -135,7 +135,7 @@ Within 40 minutes, he had cleared his room, drunk water, eaten lunch, and writte
 
 This project was built and recorded using **DevRelay** and the Antigravity agentic harness. You can inspect the full tool calls, prompt logs, and decision trees preserved in our normalized session:
 
-{% agent_session 364 %}
+{% agent_session bitesize-de-escalating-adhd-task-paralysis-with-open-source-ai-zqzifx %}
 
 *(Direct Session Link: [dev.to/agent_sessions/bitesize-de-escalating-adhd-task-paralysis-with-open-source-ai-zqzifx](https://dev.to/agent_sessions/bitesize-de-escalating-adhd-task-paralysis-with-open-source-ai-zqzifx))*
 
