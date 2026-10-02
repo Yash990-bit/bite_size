@@ -143,8 +143,8 @@ This project was built and recorded using **DevRelay** and the Antigravity agent
 
 ## Prize Categories
 
-- **Hacktoberfest Weekend Challenge: Build for a Friend** (Primary)
-- **Open-Source AI & Local Inference**
+- **Hacktoberfest Weekend Challenge: Build for a Friend** (Overall Main Prize)
+- **Best Use of Gemma** (Supports Google's open-weight `gemma2:2b` / `gemma2:9b` locally via Ollama for fast, empathetic cognitive de-escalation)
 
 ---
 
